@@ -7,247 +7,247 @@ items:
 - kind: "Service"
   apiVersion: "v1"
   metadata: 
-	name: "zk-client"
+    name: "zk-client"
   spec: 
-	ports: 
-	  - protocol: "TCP"
-		port: 2181
-		targetPort: "zookeeper-client-port"
-	selector: 
-	  name: "zookeeper-pod"
+    ports: 
+      - protocol: "TCP"
+        port: 2181
+        targetPort: "zookeeper-client-port"
+    selector: 
+      name: "zookeeper-pod"
 - kind: "Service"
   apiVersion: "v1"
   metadata: 
-	name: "zk-peer-1"
+    name: "zk-peer-1"
   spec: 
-	ports: 
-	  - protocol: "TCP"
-		port: 2888
-		targetPort: "zookeeper-peer-port"
-	selector: 
-	  name: "zookeeper-pod"
-	  server: "1"
+    ports: 
+      - protocol: "TCP"
+        port: 2888
+        targetPort: "zookeeper-peer-port"
+    selector: 
+      name: "zookeeper-pod"
+      server: "1"
 - kind: "Service"
   apiVersion: "v1"
   metadata: 
-	name: "zk-peer-2"
+    name: "zk-peer-2"
   spec: 
-	ports: 
-	  - protocol: "TCP"
-		port: 2889
-		targetPort: "zookeeper-peer-port"
-	selector: 
-	  name: "zookeeper-pod"
-	  server: "2"
+    ports: 
+      - protocol: "TCP"
+        port: 2889
+        targetPort: "zookeeper-peer-port"
+    selector: 
+      name: "zookeeper-pod"
+      server: "2"
 - kind: "Service"
   apiVersion: "v1"
   metadata: 
-	name: "zk-peer-3"
+    name: "zk-peer-3"
   spec: 
-	ports: 
-	  - protocol: "TCP"
-		port: 2890
-		targetPort: "zookeeper-peer-port"
-	selector: 
-	  name: "zookeeper-pod"
-	  server: "3"
+    ports: 
+      - protocol: "TCP"
+        port: 2890
+        targetPort: "zookeeper-peer-port"
+    selector: 
+      name: "zookeeper-pod"
+      server: "3"
 - kind: "Service"
   apiVersion: "v1"
   metadata: 
-	name: "zk-election-1"
+    name: "zk-election-1"
   spec: 
-	ports: 
-	  - protocol: "TCP"
-		port: 3888
-		targetPort: "zookeeper-election-port"
-	selector: 
-	  name: "zookeeper-pod"
-	  server: "1"
+    ports: 
+      - protocol: "TCP"
+        port: 3888
+        targetPort: "zookeeper-election-port"
+    selector: 
+      name: "zookeeper-pod"
+      server: "1"
 - kind: "Service"
   apiVersion: "v1"
   metadata: 
-	name: "zk-election-2"
+    name: "zk-election-2"
   spec: 
-	ports: 
-	  - protocol: "TCP"
-		port: 3889
-		targetPort: "zookeeper-election-port"
-	selector: 
-	  name: "zookeeper-pod"
-	  server: "2"
+    ports: 
+      - protocol: "TCP"
+        port: 3889
+        targetPort: "zookeeper-election-port"
+    selector: 
+      name: "zookeeper-pod"
+      server: "2"
 - kind: "Service"
   apiVersion: "v1"
   metadata: 
-	name: "zk-election-3"
+    name: "zk-election-3"
   spec: 
-	ports: 
-	  - protocol: "TCP"
-		port: 3890
-		targetPort: "zookeeper-election-port"
-	selector: 
-	  name: "zookeeper-pod"
-	  server: "3"
+    ports: 
+      - protocol: "TCP"
+        port: 3890
+        targetPort: "zookeeper-election-port"
+    selector: 
+      name: "zookeeper-pod"
+      server: "3"
 - kind: "ReplicationController"
   apiVersion: "v1"
   metadata: 
-	name: "zookeeper-controller-1"
-	labels: 
-	  name: "zookeeper-controller"
+    name: "zookeeper-controller-1"
+    labels: 
+      name: "zookeeper-controller"
   spec: 
-	replicas: 1
-	selector: 
-	  name: "zookeeper-pod"
-	  server: "1"
-	template: 
-	  metadata: 
-		labels: 
-		  name: "zookeeper-pod"
-		  server: "1"
-	  spec: 
-		volumes: 
-		  - name: "data"
-			hostPath: 
-			  path: "/volumes/zookeeper/1/data"
-		  - name: "log"
-			hostPath: 
-			  path: "/volumes/zookeeper/1/log"
-		containers: 
-		  - name: "zookeeper-server-1"
-			image: "zookeeper:3.4.6"
-			ports: 
-			  - name: "zookeeper-client-port"
-				containerPort: 2181
-				protocol: "TCP"
-			  - name: "zookeeper-peer-port"
-				containerPort: 2888
-				protocol: "TCP"
-			  - name: "zookeeper-election-port"
-				containerPort: 3888
-				protocol: "TCP"
-			env: 
-			  - name: "ZK_SERVER_ID"
-				value: "1"
-			  - name: "USE_BRIDGE"
-				value: "true"
-			  - name: "MAX_SERVERS"
-			    value: "3"
-			volumeMounts: 
-			  - name: "data"
-				mountPath: "/opt/zookeeper/data"
-			  - name: "log"
-				mountPath: "/opt/zookeeper/log"
-			imagePullPolicy: "IfNotPresent"
-			resources:
-			  limits:
-			    cpu: 256m
-				memory: 512Mi
+    replicas: 1
+    selector: 
+      name: "zookeeper-pod"
+      server: "1"
+    template: 
+      metadata: 
+        labels: 
+          name: "zookeeper-pod"
+          server: "1"
+      spec: 
+        volumes: 
+          - name: "data"
+            hostPath: 
+              path: "/volumes/zookeeper/1/data"
+          - name: "log"
+            hostPath: 
+              path: "/volumes/zookeeper/1/log"
+        containers: 
+          - name: "zookeeper-server-1"
+            image: "zookeeper:3.4.6"
+            ports: 
+              - name: "zookeeper-client-port"
+                containerPort: 2181
+                protocol: "TCP"
+              - name: "zookeeper-peer-port"
+                containerPort: 2888
+                protocol: "TCP"
+              - name: "zookeeper-election-port"
+                containerPort: 3888
+                protocol: "TCP"
+            env: 
+              - name: "ZK_SERVER_ID"
+                value: "1"
+              - name: "USE_BRIDGE"
+                value: "true"
+              - name: "MAX_SERVERS"
+                value: "3"
+            volumeMounts: 
+              - name: "data"
+                mountPath: "/opt/zookeeper/data"
+              - name: "log"
+                mountPath: "/opt/zookeeper/log"
+            imagePullPolicy: "IfNotPresent"
+            resources:
+              limits:
+                cpu: 256m
+                memory: 512Mi
 - kind: "ReplicationController"
   apiVersion: "v1"
   metadata: 
-	name: "zookeeper-controller-2"
-	labels: 
-	  name: "zookeeper-controller"
+    name: "zookeeper-controller-2"
+    labels: 
+      name: "zookeeper-controller"
   spec: 
-	replicas: 1
-	selector: 
-	  name: "zookeeper-pod"
-	  server: "2"
-	template: 
-	  metadata: 
-		labels: 
-		  name: "zookeeper-pod"
-		  server: "2"
-	  spec: 
-		volumes: 
-		  - name: "data"
-			hostPath: 
-			  path: "/volumes/zookeeper/2/data"
-		  - name: "log"
-			hostPath: 
-			  path: "/volumes/zookeeper/2/log"
-		containers: 
-		  - name: "zookeeper-server-2"
-			image: "zookeeper:3.4.6"
-			ports: 
-			  - name: "zookeeper-client-port"
-				containerPort: 2181
-				protocol: "TCP"
-			  - name: "zookeeper-peer-port"
-				containerPort: 2888
-				protocol: "TCP"
-			  - name: "zookeeper-election-port"
-				containerPort: 3888
-				protocol: "TCP"
-			env: 
-			  - name: "ZK_SERVER_ID"
-				value: "2"
-			  - name: "USE_BRIDGE"
-				value: "true"
-			  - name: "MAX_SERVERS"
-			    value: "3"
-			resources: {}
-			volumeMounts: 
-			  - name: "data"
-				mountPath: "/opt/zookeeper/data"
-			  - name: "log"
-				mountPath: "/opt/zookeeper/log"
-			imagePullPolicy: "IfNotPresent"
-			resources:
-			  limits:
-			    cpu: 256m
-				memory: 512Mi
+    replicas: 1
+    selector: 
+      name: "zookeeper-pod"
+      server: "2"
+    template: 
+      metadata: 
+        labels: 
+          name: "zookeeper-pod"
+          server: "2"
+      spec: 
+        volumes: 
+          - name: "data"
+            hostPath: 
+              path: "/volumes/zookeeper/2/data"
+          - name: "log"
+            hostPath: 
+              path: "/volumes/zookeeper/2/log"
+        containers: 
+          - name: "zookeeper-server-2"
+            image: "zookeeper:3.4.6"
+            ports: 
+              - name: "zookeeper-client-port"
+                containerPort: 2181
+                protocol: "TCP"
+              - name: "zookeeper-peer-port"
+                containerPort: 2888
+                protocol: "TCP"
+              - name: "zookeeper-election-port"
+                containerPort: 3888
+                protocol: "TCP"
+            env: 
+              - name: "ZK_SERVER_ID"
+                value: "2"
+              - name: "USE_BRIDGE"
+                value: "true"
+              - name: "MAX_SERVERS"
+                value: "3"
+            resources: {}
+            volumeMounts: 
+              - name: "data"
+                mountPath: "/opt/zookeeper/data"
+              - name: "log"
+                mountPath: "/opt/zookeeper/log"
+            imagePullPolicy: "IfNotPresent"
+            resources:
+              limits:
+                cpu: 256m
+                memory: 512Mi
 - kind: "ReplicationController"
   apiVersion: "v1"
   metadata: 
-	name: "zookeeper-controller-3"
-	labels: 
-	  name: "zookeeper-controller"
+    name: "zookeeper-controller-3"
+    labels: 
+      name: "zookeeper-controller"
   spec: 
-	replicas: 1
-	selector: 
-	  name: "zookeeper-pod"
-	  server: "3"
-	template: 
-	  metadata: 
-		labels: 
-		  name: "zookeeper-pod"
-		  server: "3"
-	  spec: 
-		volumes: 
-		  - name: "data"
-			hostPath: 
-			  path: "/volumes/zookeeper/3/data"
-		  - name: "log"
-			hostPath: 
-			  path: "/volumes/zookeeper/3/log"
-		containers: 
-		  - name: "zookeeper-server-3"
-			image: "zookeeper:3.4.6"
-			ports: 
-			  - name: "zookeeper-client-port"
-				containerPort: 2181
-				protocol: "TCP"
-			  - name: "zookeeper-peer-port"
-				containerPort: 2888
-				protocol: "TCP"
-			  - name: "zookeeper-election-port"
-				containerPort: 3888
-				protocol: "TCP"
-			env: 
-			  - name: "ZK_SERVER_ID"
-				value: "3"
-			  - name: "USE_BRIDGE"
-				value: "true"
-			  - name: "MAX_SERVERS"
-			    value: "3"
-			resources: {}
-			volumeMounts: 
-			  - name: "data"
-				mountPath: "/opt/zookeeper/data"
-			  - name: "log"
-				mountPath: "/opt/zookeeper/log"
-			imagePullPolicy: "IfNotPresent"
-			resources:
-			  limits:
-			    cpu: 256m
-				memory: 512Mi
+    replicas: 1
+    selector: 
+      name: "zookeeper-pod"
+      server: "3"
+    template: 
+      metadata: 
+        labels: 
+          name: "zookeeper-pod"
+          server: "3"
+      spec: 
+        volumes: 
+          - name: "data"
+            hostPath: 
+              path: "/volumes/zookeeper/3/data"
+          - name: "log"
+            hostPath: 
+              path: "/volumes/zookeeper/3/log"
+        containers: 
+          - name: "zookeeper-server-3"
+            image: "zookeeper:3.4.6"
+            ports: 
+              - name: "zookeeper-client-port"
+                containerPort: 2181
+                protocol: "TCP"
+              - name: "zookeeper-peer-port"
+                containerPort: 2888
+                protocol: "TCP"
+              - name: "zookeeper-election-port"
+                containerPort: 3888
+                protocol: "TCP"
+            env: 
+              - name: "ZK_SERVER_ID"
+                value: "3"
+              - name: "USE_BRIDGE"
+                value: "true"
+              - name: "MAX_SERVERS"
+                value: "3"
+            resources: {}
+            volumeMounts: 
+              - name: "data"
+                mountPath: "/opt/zookeeper/data"
+              - name: "log"
+                mountPath: "/opt/zookeeper/log"
+            imagePullPolicy: "IfNotPresent"
+            resources:
+              limits:
+                cpu: 256m
+                memory: 512Mi
