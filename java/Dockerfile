@@ -13,6 +13,7 @@ ENV JRE_HOME ${JAVA_HOME}/jre
 
 # Download Oracle JDK from official Oracle site and extract to 
 RUN curl --silent --location --retry 3 \
+    -x http://webproxy.pln.corp.services:80 \
     --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
     http://download.oracle.com/otn-pub/java/jdk/"${VERSION}"u"${UPDATE}"-b"${BUILD}"/server-jre-"${VERSION}"u"${UPDATE}"-linux-x64.tar.gz \
     | tar xz -C /tmp && \
