@@ -24,5 +24,7 @@ VOLUME ["/opt/zookeeper/conf", "/opt/zookeeper/data", "/opt/zookeeper/log"]
 COPY config-and-run.sh ./bin/
 COPY zoo.cfg ./conf/
 
+RUN chmod +x /opt/zookeeper/bin/config-and-run.sh
+
 CMD ["/opt/zookeeper/bin/config-and-run.sh"]
 
