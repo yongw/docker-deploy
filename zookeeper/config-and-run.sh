@@ -7,9 +7,9 @@ if [ ! -z "$ZK_SERVER_ID" ] && [ ! -z "$MAX_SERVERS" ]; then
   #Find the servers exposed in env.
   for i in $( eval echo {1..$MAX_SERVERS});do
 
-    HOST=`envValue ZK_PEER_${i}_SERVICE_HOST`
-    PEER=`envValue ZK_PEER_${i}_SERVICE_PORT`
-    ELECTION=`envValue ZK_ELECTION_${i}_SERVICE_PORT`
+    HOST="ZK_PEER_${i}_SERVICE_HOST"
+    PEER="ZK_PEER_${i}_SERVICE_PORT"
+    ELECTION="ZK_ELECTION_${i}_SERVICE_PORT"
 
     if [ "$ZK_SERVER_ID" = "$i" ];then
       echo "server.$i=0.0.0.0:2888:3888" >> conf/zoo.cfg
