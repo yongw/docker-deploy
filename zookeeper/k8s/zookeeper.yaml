@@ -1,7 +1,7 @@
-id: "fabric8-zookeeper-config"
+id: "zookeeper-cluster"
 kind: "List"
 apiVersion: "v1"
-name: "fabric8-zookeeper-config"
+name: "zookeeper-cluster"
 description: "Creates a ZooKeeper Server"
 items: 
 - kind: "Service"
@@ -12,7 +12,7 @@ items:
     ports: 
     - protocol: "TCP"
       port: 2181
-      targetPort: "zookeeper-client-port"
+      targetPort: "zk-client-port"
     selector: 
       name: "zookeeper-pod"
 - kind: "Service"
@@ -23,7 +23,7 @@ items:
     ports: 
     - protocol: "TCP"
       port: 2888
-      targetPort: "zookeeper-peer-port"
+      targetPort: "zk-peer-port"
     selector: 
       name: "zookeeper-pod"
       server: "1"
@@ -34,8 +34,8 @@ items:
   spec: 
     ports: 
     - protocol: "TCP"
-      port: 2889
-      targetPort: "zookeeper-peer-port"
+      port: 2888
+      targetPort: "zk-peer-port"
     selector: 
       name: "zookeeper-pod"
       server: "2"
@@ -46,8 +46,8 @@ items:
   spec: 
     ports: 
     - protocol: "TCP"
-      port: 2890
-      targetPort: "zookeeper-peer-port"
+      port: 2888
+      targetPort: "zk-peer-port"
     selector: 
       name: "zookeeper-pod"
       server: "3"
@@ -59,7 +59,7 @@ items:
     ports: 
     - protocol: "TCP"
       port: 3888
-      targetPort: "zookeeper-election-port"
+      targetPort: "zk-elec-port"
     selector: 
       name: "zookeeper-pod"
       server: "1"
@@ -70,8 +70,8 @@ items:
   spec: 
     ports: 
     - protocol: "TCP"
-      port: 3889
-      targetPort: "zookeeper-election-port"
+      port: 3888
+      targetPort: "zk-elec-port"
     selector: 
       name: "zookeeper-pod"
       server: "2"
@@ -82,8 +82,8 @@ items:
   spec: 
     ports: 
     - protocol: "TCP"
-      port: 3890
-      targetPort: "zookeeper-election-port"
+      port: 3888
+      targetPort: "zk-elec-port"
     selector: 
       name: "zookeeper-pod"
       server: "3"
@@ -113,15 +113,15 @@ items:
             path: "/volumes/zookeeper/1/log"
         containers: 
         - name: "zookeeper-server-1"
-          image: "zookeeper:3.4.6"
+          image: "dockerlab.int.thomsonreuters.com:30000/zookeeper"
           ports: 
-          - name: "zookeeper-client-port"
+          - name: "zk-client-port"
             containerPort: 2181
             protocol: "TCP"
-          - name: "zookeeper-peer-port"
+          - name: "zk-peer-port"
             containerPort: 2888
             protocol: "TCP"
-          - name: "zookeeper-election-port"
+          - name: "zk-elec-port"
             containerPort: 3888
             protocol: "TCP"
           env: 
@@ -167,15 +167,15 @@ items:
             path: "/volumes/zookeeper/2/log"
         containers: 
         - name: "zookeeper-server-2"
-          image: "zookeeper:3.4.6"
+          image: "dockerlab.int.thomsonreuters.com:30000/zookeeper"
           ports: 
-          - name: "zookeeper-client-port"
+          - name: "zk-client-port"
             containerPort: 2181
             protocol: "TCP"
-          - name: "zookeeper-peer-port"
+          - name: "zk-peer-port"
             containerPort: 2888
             protocol: "TCP"
-          - name: "zookeeper-election-port"
+          - name: "zk-elec-port"
             containerPort: 3888
             protocol: "TCP"
           env: 
@@ -221,15 +221,15 @@ items:
             path: "/volumes/zookeeper/3/log"
         containers: 
         - name: "zookeeper-server-3"
-          image: "zookeeper:3.4.6"
+          image: "dockerlab.int.thomsonreuters.com:30000/zookeeper"
           ports: 
-          - name: "zookeeper-client-port"
+          - name: "zk-client-port"
             containerPort: 2181
             protocol: "TCP"
-          - name: "zookeeper-peer-port"
+          - name: "zk-peer-port"
             containerPort: 2888
             protocol: "TCP"
-          - name: "zookeeper-election-port"
+          - name: "zk-elec-port"
             containerPort: 3888
             protocol: "TCP"
           env: 
