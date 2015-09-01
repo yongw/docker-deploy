@@ -9,8 +9,8 @@ if [ ! -z "$ZK_SERVER_ID" ] && [ ! -z "$MAX_SERVERS" ]; then
   for i in $( eval echo {1..$MAX_SERVERS});do
 
     HOST=$(eval echo \$ZK_PEER_${i}_SERVICE_HOST)
-    PEER=$(eval echo \$ZK_PEER_${i}_SERVICE_PORT)
-    ELECTION=$(eval echo \$ZK_ELECTION_${i}_SERVICE_PORT)
+    PEER=$(eval echo \$ZK_PEER_${i}_SERVICE_PORT_PEER)
+    ELECTION=$(eval echo \$ZK_PEER_${i}_SERVICE_PORT_ELECTION)
 
     if [ -z "$HOST" ] || [ -z "$PEER" ] || [ -z "$ELECTION" ] ; then
       #if a server is not fully defined stop the loop here.
