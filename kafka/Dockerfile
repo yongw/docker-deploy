@@ -1,6 +1,6 @@
 # Build Kafka 0.8
 
-FROM oracle-java:1.7
+FROM dockerlab.int.thomsonreuters.com:30000/oracle-java:1.7
 
 MAINTAINER Yong Wang <yong.wang@thomsonreuters.com>
 
@@ -14,11 +14,14 @@ RUN curl --silent --retry 3 \
 
 EXPOSE 9092
 
-VOLUME ["/kafka/data", "/kafka/log"]
+VOLUME ["/kafka/log"]
 
 ENV KAFKA_HOME /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION}
 
-WORKDIR /opt/${KAFKA_HOME}
+WORKDIR ${KAFKA_HOME}
 
-CMD ["/opt/${KAFKA_HOME}/bin/kafka-server-start.sh"]
+ADD config-and-run.sh $KAFKA_HOME/bin/config-and-run.sh
+ADD config $KAFKA_HOME/config
+
+CMD ["bin/config-and-run.sh"]
 
