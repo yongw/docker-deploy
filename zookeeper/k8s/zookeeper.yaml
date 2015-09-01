@@ -24,6 +24,9 @@ items:
     - protocol: "TCP"
       port: 2888
       targetPort: "zk-peer-port"
+	- protocol: "TCP"
+	  port: 3888
+	  targetPort: "zk-elec-port"
     selector: 
       name: "zookeeper-pod"
       server: "1"
@@ -36,6 +39,9 @@ items:
     - protocol: "TCP"
       port: 2888
       targetPort: "zk-peer-port"
+	- protocol: "TCP"
+	  port: 3888
+	  targetPort: "zk-elec-port"
     selector: 
       name: "zookeeper-pod"
       server: "2"
@@ -48,42 +54,9 @@ items:
     - protocol: "TCP"
       port: 2888
       targetPort: "zk-peer-port"
-    selector: 
-      name: "zookeeper-pod"
-      server: "3"
-- kind: "Service"
-  apiVersion: "v1"
-  metadata: 
-    name: "zk-election-1"
-  spec: 
-    ports: 
-    - protocol: "TCP"
-      port: 3888
-      targetPort: "zk-elec-port"
-    selector: 
-      name: "zookeeper-pod"
-      server: "1"
-- kind: "Service"
-  apiVersion: "v1"
-  metadata: 
-    name: "zk-election-2"
-  spec: 
-    ports: 
-    - protocol: "TCP"
-      port: 3888
-      targetPort: "zk-elec-port"
-    selector: 
-      name: "zookeeper-pod"
-      server: "2"
-- kind: "Service"
-  apiVersion: "v1"
-  metadata: 
-    name: "zk-election-3"
-  spec: 
-    ports: 
-    - protocol: "TCP"
-      port: 3888
-      targetPort: "zk-elec-port"
+	- protocol: "TCP"
+	  port: 3888
+	  targetPort: "zk-elec-port"
     selector: 
       name: "zookeeper-pod"
       server: "3"
