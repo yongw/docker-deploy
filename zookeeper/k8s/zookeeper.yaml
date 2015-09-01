@@ -22,13 +22,13 @@ items:
   spec: 
     ports: 
     - name: "peer"
-	  protocol: "TCP"
+      protocol: "TCP"
       port: 2888
       targetPort: "zk-peer-port"
-	- name: "election"
-	  protocol: "TCP"
-	  port: 3888
-	  targetPort: "zk-elec-port"
+    - name: "election"
+      protocol: "TCP"
+      port: 3888
+      targetPort: "zk-elec-port"
     selector: 
       name: "zookeeper-pod"
       server: "1"
@@ -42,10 +42,10 @@ items:
       protocol: "TCP"
       port: 2888
       targetPort: "zk-peer-port"
-	- name: "election"
-	  protocol: "TCP"
-	  port: 3888
-	  targetPort: "zk-elec-port"
+    - name: "election"
+      protocol: "TCP"
+      port: 3888
+      targetPort: "zk-elec-port"
     selector: 
       name: "zookeeper-pod"
       server: "2"
@@ -56,13 +56,13 @@ items:
   spec: 
     ports: 
     - name: "peer"
-	  protocol: "TCP"
+      protocol: "TCP"
       port: 2888
       targetPort: "zk-peer-port"
-	- name: "election"
-	  protocol: "TCP"
-	  port: 3888
-	  targetPort: "zk-elec-port"
+    - name: "election"
+      protocol: "TCP"
+      port: 3888
+      targetPort: "zk-elec-port"
     selector: 
       name: "zookeeper-pod"
       server: "3"
