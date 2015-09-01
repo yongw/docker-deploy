@@ -10,5 +10,5 @@ Kubernetes configuration yaml file for the following applications:
 
 [Zookeeper]: https://github.com/yongw/docker-deploy/tree/master/kafka
 [Kafka]: https://github.com/yongw/docker-deploy/tree/master/kafka
-[Docker]: http://www.docker.io
-[Kubernetes]: http://www.kubernetes.io
+[Docker]: http://www.docker.com
+[Kubernetes]: http://kubernetes.io/
