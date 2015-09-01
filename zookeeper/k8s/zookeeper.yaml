@@ -21,10 +21,12 @@ items:
     name: "zk-peer-1"
   spec: 
     ports: 
-    - protocol: "TCP"
+    - name: "peer"
+	  protocol: "TCP"
       port: 2888
       targetPort: "zk-peer-port"
-	- protocol: "TCP"
+	- name: "election"
+	  protocol: "TCP"
 	  port: 3888
 	  targetPort: "zk-elec-port"
     selector: 
@@ -36,10 +38,12 @@ items:
     name: "zk-peer-2"
   spec: 
     ports: 
-    - protocol: "TCP"
+    - name: "peer"
+      protocol: "TCP"
       port: 2888
       targetPort: "zk-peer-port"
-	- protocol: "TCP"
+	- name: "election"
+	  protocol: "TCP"
 	  port: 3888
 	  targetPort: "zk-elec-port"
     selector: 
@@ -51,10 +55,12 @@ items:
     name: "zk-peer-3"
   spec: 
     ports: 
-    - protocol: "TCP"
+    - name: "peer"
+	  protocol: "TCP"
       port: 2888
       targetPort: "zk-peer-port"
-	- protocol: "TCP"
+	- name: "election"
+	  protocol: "TCP"
 	  port: 3888
 	  targetPort: "zk-elec-port"
     selector: 
