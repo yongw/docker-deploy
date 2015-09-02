@@ -1,14 +1,14 @@
-Docker-deploy
+Docker-Kubernetes
 =============
 
-Docker-deploy is a project to build [Docker] images for series of services and applications and deploy to [Kubernetes] cluster. 
+Docker-Kubernetes is a project to build [Docker] images for series of services and applications and deploy to [Kubernetes] cluster. 
 Kubernetes is a production ready orchestration system for managing containerized applications. This project has Dockerfile and 
 Kubernetes configuration yaml files for the following applications:
   - [Zookeeper]
   - [Kafka]
   - `Elastic Search`
 
-[Zookeeper]: https://github.com/yongw/docker-deploy/tree/master/kafka
-[Kafka]: https://github.com/yongw/docker-deploy/tree/master/kafka
+[Zookeeper]: zookeeper
+[Kafka]: kafka
 [Docker]: http://www.docker.com
 [Kubernetes]: http://kubernetes.io/
