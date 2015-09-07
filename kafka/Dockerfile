@@ -21,6 +21,7 @@ ENV KAFKA_HOME /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION}
 WORKDIR ${KAFKA_HOME}
 
 ADD config-and-run.sh $KAFKA_HOME/bin/config-and-run.sh
+ADD broker-list.sh $KAFKA_HOME/bin/broker-list.sh
 ADD config $KAFKA_HOME/config
 
 CMD ["bin/config-and-run.sh"]
