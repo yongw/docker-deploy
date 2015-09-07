@@ -13,8 +13,10 @@ items:
     - protocol: "TCP"
       port: 2181
       targetPort: "zk-client-port"
+      nodePort: 30001
     selector: 
       name: "zookeeper-pod"
+    type: "NodePort"
 - kind: "Service"
   apiVersion: "v1"
   metadata: 
@@ -69,9 +71,9 @@ items:
 - kind: "ReplicationController"
   apiVersion: "v1"
   metadata: 
-    name: "zookeeper-controller-1"
+    name: "zookeeper-1"
     labels: 
-      name: "zookeeper-controller"
+      name: "zookeeper"
   spec: 
     replicas: 1
     selector: 
@@ -115,7 +117,7 @@ items:
             mountPath: "/opt/zookeeper/data"
           - name: "log"
             mountPath: "/opt/zookeeper/log"
-          imagePullPolicy: "IfNotPresent"
+          imagePullPolicy: "Always"
           resources:
             limits:
               cpu: 256m
@@ -123,9 +125,9 @@ items:
 - kind: "ReplicationController"
   apiVersion: "v1"
   metadata: 
-    name: "zookeeper-controller-2"
+    name: "zookeeper-2"
     labels: 
-      name: "zookeeper-controller"
+      name: "zookeeper"
   spec: 
     replicas: 1
     selector: 
@@ -169,7 +171,7 @@ items:
             mountPath: "/opt/zookeeper/data"
           - name: "log"
             mountPath: "/opt/zookeeper/log"
-          imagePullPolicy: "IfNotPresent"
+          imagePullPolicy: "Always"
           resources:
             limits:
               cpu: 256m
@@ -177,9 +179,9 @@ items:
 - kind: "ReplicationController"
   apiVersion: "v1"
   metadata: 
-    name: "zookeeper-controller-3"
+    name: "zookeeper-3"
     labels: 
-      name: "zookeeper-controller"
+      name: "zookeeper"
   spec: 
     replicas: 1
     selector: 
@@ -223,7 +225,7 @@ items:
             mountPath: "/opt/zookeeper/data"
           - name: "log"
             mountPath: "/opt/zookeeper/log"
-          imagePullPolicy: "IfNotPresent"
+          imagePullPolicy: "Always"
           resources:
             limits:
               cpu: 256m

@@ -24,6 +24,7 @@ sed -i "s/{{KAFKA_BROKER_ID}}/${KAFKA_BROKER_ID}/g" $KAFKA_HOME/config/server.pr
 sed -i "s/{{KAFKA_PARTITIONS}}/${KAFKA_PARTITIONS}/g" $KAFKA_HOME/config/server.properties
 sed -i "s/{{KAFKA_SERVER_PORT}}/${KAFKA_SERVER_PORT}/g" $KAFKA_HOME/config/server.properties
 sed -i "s/{{ZOOKEEPER_CONNECTION_STRING}}/${ZOOKEEPER_CONNECTION_STRING}/g" $KAFKA_HOME/config/server.properties
+sed -i "s/{{KAFKA_HOST_IP}}/${IP}/g" $KAFKA_HOME/config/server.properties
 
 # Start Kafka server
 exec $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
